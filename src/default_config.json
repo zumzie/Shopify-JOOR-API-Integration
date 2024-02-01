@@ -1,0 +1,157 @@
+{
+    "store_name": "",
+    "tokens":
+    {
+        "joor": "",
+        "shopify": "",
+        "webhook_secret": ""
+    },
+    "options_settings": {
+      "size": "Size",
+      "color": "Color",
+      "materials": "Material",
+      "fabrication": "Fabric",
+      "unique_options": {
+        "size": "'Unique Size'",
+        "size_code": "'Unique Size'",
+        "size_description": "''",
+        "color": "'Unique Color'",
+        "color_code": "'Unique Color'"
+      }
+    },
+    "flows_settings": {
+      "customers": {
+        "active": true,
+        "frequency": 60,
+        "scope_from_date": {
+          "year": 0,
+          "month": 0,
+          "day": 0,
+          "hour": 0,
+          "minute": 65
+        },
+        "tags": {
+          "customer_to_include": [],
+          "customer_to_exclude": []
+        },
+        "eval_customer_name": "(cur_customer['company'] == null ? (cur_customer['first_name']!=null?cur_customer['first_name'] + blank_char:'') + (cur_customer['last_name']!=null?cur_customer['last_name']:'') : cur_customer['company'])",
+        "eval_customer_alias": "customer_name",
+        "eval_buyer_name": "",
+        "eval_buyer_email": "",
+        "metafields": {
+          "customer": []
+        }
+      },
+      "styles": {
+        "active": true,
+        "frequency": 60,
+        "scope_from_date": {
+          "year": 0,
+          "month": 0,
+          "day": 0,
+          "hour": 0,
+          "minute": 65
+        },
+        "metafields": {
+          "product": []
+        },
+        "tags": {
+          "eval_variant_to_exclude": []
+        },
+        "size_name_to_casepack_id": [],
+        "prod_type_to_exclude": [],
+        "create_styles_per_variant": false,
+        "create_styles_per_color_variant": false,
+        "variant_images_at_swatch_level": false,
+        "variant_images_duplicated_at_style_level": true,
+        "upload_multiple_variants_images_at_style_level": false,
+        "eval_style_name": "cur_product['title']",
+        "eval_style_number": "cur_product['id'].toString()",
+        "eval_style_description": "(cur_product['body_html']===null?'':unescape(cur_product['body_html']).replace(/(<([^>]+)>)/ig,'').replace(/&amp;/ig,'&').replace(/&nbsp;/ig,' '))",
+        "eval_style_fabrication": "''",
+        "eval_style_country_origin": "''",
+        "eval_style_division": "''",
+        "eval_style_measurement": "''",
+        "eval_style_materials": "''",
+        "eval_joor_categories": "''",
+        "eval_upc": "((typeof cur_variant.barcode != 'undefined' && cur_variant.barcode != null)?cur_variant.barcode:'')",
+        "eval_silhouette": "cur_product['product_type']",
+        "eval_color_name": "cur_variant[color_option] + option_sufixed_to_color",
+        "eval_color_code": "cur_color_name",
+        "eval_size_name": "cur_variant[size_option]",
+        "eval_size_code": "''",
+        "eval_size_description": "''",
+        "eval_unit_price": "cur_variant['price']",
+        "manage_wholesale_pricing_in_joor": true,
+        "manage_wholesale_pricing_in_joor_except_default_pricetype": false,
+        "manage_retail_pricing_in_joor": false,
+        "manage_retail_pricing_in_joor_except_default_pricetype": false,
+        "manage_style_description_in_joor": false,
+        "manage_styles_display_order_in_joor": true,
+        "eval_unit_retail_price": "cur_variant['price']",
+        "enrich_style_description_with_existing_colors": false,
+        "extra_storagestep_for_upc": false
+      },
+      "inventory": {
+        "active": true,
+        "scope_from_date": {
+          "year": 0,
+          "month": 3,
+          "day": 0,
+          "hour": 0,
+          "minute": 65
+        },
+        "warehouses_to_include": []
+      },
+      "images": {
+        "active": true,
+        "scope_from_date": {
+          "year": 0,
+          "month": 0,
+          "day": 0,
+          "hour": 0,
+          "minute": 65
+        },
+        "block_images_mapping_at_style_level": false,
+        "block_images_mapping_at_color_level": false,
+        "block_images_mapping_at_swatch_level": false
+      },
+      "orders": {
+        "active": false,
+        "frequency": 60,
+        "financial_status": "pending",
+        "create_draft_orders": false,
+        "anonymize_buyer_email": false,
+        "fulfill": false,
+        "decrement_obeying_policy": true,
+        "create_order_with_pending_customer": false,
+        "mapping_note": "cur_order.order_comments.replace('<eop>','')",
+        "eval_tags": [],
+        "eval_company_name": "''",
+        "eval_order_number": "'J-'+cur_order.customer_purchase_order",
+        "eval_address_first_name": "(address_type === 'billing' ? cur_order.billing_name : (address_type === 'shipping' ? cur_order.shipping_name : cur_order.customer_code ))",
+        "eval_address_last_name": "cur_order.customer_name",
+        "eval_shipping_method_name": "'Shipping Fee'",
+        "force_display_shipping_fee": false,
+        "uri_filtering_param": [
+          ""
+        ],
+        "taxes_to_add_per_billing_country": [],
+        "taxes_to_add_per_shipping_country": [],
+        "scope_from_date": {
+          "year": 0,
+          "month": 0,
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        }
+      }
+    },
+    "price": {
+      "price_label": "",
+      "price_currency": "USD",
+      "price_retail_currency": "USD",
+      "other_prices": []
+    }
+  }
+  
