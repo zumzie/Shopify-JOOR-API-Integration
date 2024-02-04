@@ -1,33 +1,39 @@
-require('dotenv').config();
 const axios = require('axios');
-const fs = require('fs').promises; // For async file operations
-
 
 class JoorBase {
-    constructor(authData) {
-        this.baseURL = "https://apisandbox.jooraccess.com/v4";
-        this.authURL = "https://atlas-sandbox.jooraccess.com/auth";
+    constructor(authData, apiVersion = 'v4') {
+        this.apiVersion = apiVersion;
+        this.baseURL = `https://apisandbox.jooraccess.com/${this.apiVersion}`;
         this.authData = authData;
-        this.token = '';
-        this.authenticate();
+        this.token = this.apiVersion === 'v4' ? '' : this.encodeToken(authData.token);
+        if (this.apiVersion === 'v4') {
+            this.authURL = "https://atlas-sandbox.jooraccess.com/auth";
+            this.authenticate();
+        }
+    }
+
+    encodeToken(token) {
+        return Buffer.from(token).toString('base64');
     }
 
     async authenticate() {
-        try {
-            const params = new URLSearchParams();
-            Object.keys(this.authData).forEach(key => params.append(key, this.authData[key]));
-    
-            const response = await axios.post(this.authURL, params, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+        if (this.apiVersion === 'v4') {
+            try {
+                const params = new URLSearchParams();
+                Object.keys(this.authData).forEach(key => params.append(key, this.authData[key]));
+        
+                const response = await axios.post(this.authURL, params, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                if (response.status === 200) {
+                    this.token = response.data.access_token;
                 }
-            });
-            if (response.status === 200) {
-                this.token = response.data.access_token;
+            } catch (error) {
+                console.error('Authentication failed:', error);
+                throw error;
             }
-        } catch (error) {
-            console.error('Authentication failed:', error);
-            throw error;
         }
     }
 
@@ -39,7 +45,6 @@ class JoorBase {
                 'Accept': 'application/json'
             };
     
-            // Explicitly set Content-Type for POST requests
             if (method === 'POST' && data) {
                 headers['Content-Type'] = 'application/json';
             }
@@ -95,7 +100,7 @@ class JoorProducts extends JoorBase {
                 responseData.push(test);
             } catch (error) {
                 console.error('Error posting SKUs:', error);
-                // Optionally, push error information to responseData if needed
+                // push error information to responseData if needed
                 //responseData.push({ error: 'Failed to post SKUs', details: error.message });
             }
         }
@@ -110,7 +115,6 @@ class JoorProducts extends JoorBase {
             var groupedSkuID = mappedSkus[i]['product_id'];
             try {
                 var response = await this.sendRequest(`/skus/bulk_update_by_external_id?account=${accountId}`, 'POST', setOfSkus);
-                console.log(response)
                 var test = {[groupedSkuID]: response['data']};
                 responseData.push(test);
 
@@ -125,6 +129,14 @@ class JoorProducts extends JoorBase {
 
     async postPrices(accountId, data) {
         return this.sendRequest(`/prices/bulk_create?account=${accountId}`, 'POST', data);
+    }
+    async postInventory(data) {
+        if (this.apiVersion === 'v2') {
+            const endpoint = '/bulk-inventory';
+            return this.sendRequest(endpoint, 'POST', data);
+        } else {
+            throw new Error("postInventory is only available for the V2 API.");
+        }
     }
 }
 

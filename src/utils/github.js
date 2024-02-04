@@ -7,6 +7,11 @@ const {
     OnepassVault
 } = require('./onepass');
 
+const {
+    SlackBase,
+    SlackActions
+} = require('./slack');
+
 class GithubBase {
     constructor(apiToken, apiKey, storeUrl) {
         this.apiToken = apiToken;
@@ -40,64 +45,73 @@ class GithubBase {
                 return response.data;
             }
         } catch (error) {
-            console.error('Error sending request:', error);
+            //console.error('Error sending request:', error);
             throw error;
         }
     }
 }
 
 class GithubRepo extends GithubBase {
+
+    async getAndDecodeJSON(configUrl){
+        const getSandboxData = await this.sendRequest(configUrl);
+        const base64Content = getSandboxData.content;
+        const decodedContent = Buffer.from(base64Content, 'base64').toString('utf-8');
+        const data = JSON.parse(decodedContent);
+        
+        return data;
+    }
+
     async getSandboxRepo() {
         return this.sendRequest(`/sandbox-integrations/applications/shopify_test`);
     }
-    async getFileContent(configList) {
+
+    async getDefaultConfig() {
         try {
-                //configList.forEach(config => {
-                var configUrl = `/sandbox-integrations/applications/shopify_test/${configList[0]}`
-                console.log(configUrl)
-                return this.sendRequest(configUrl);
-            //})
+            
+            const configUrl = `/sandbox-integrations/applications/shopify_test/default_config.json`;
+            const defaultConfig = await this.getAndDecodeJSON(configUrl);
+
+            return defaultConfig;
         } catch (error) {
-            console.log("Ran into an error with config:" + error);
+            console.error(`Failed to process ${configName}:`, error);
+            throw error; 
         }
     }
-}
 
-// Below is for testing, will be adding to main
-(async () => {
-    try {
-    const apiToken = process.env.PASS_TOKEN;
-    var vaultId = "";
-    var githubToken = ""
+    async getDataContainer() {
+        try {
+            const configUrl = `/sandbox-integrations/applications/shopify_test/data_container.json`;
+            const dataContainer = await this.getAndDecodeJSON(configUrl);
 
-    const onepass = new OnepassVault(apiToken);
-    var githubToken = await onepass.grabGithubToken(vaultId);
-    const github = new GithubRepo(githubToken);
-
-
-    var sandboxList = await github.getSandboxRepo(githubToken);
-
-    var configList = [];
-
-    sandboxList.forEach(config => {
-        configName = config.name;
-        if(configName.startsWith("config_")){
-            configList.push(configName);
-            console.log(configList)
+            return dataContainer;
+        } catch (error) {
+            console.error(`Failed to process ${configName}:`, error);
+            throw error;
         }
-    });
+    }
+    async compileConfigData(configList, onepass) {
+        let configData = [];
+        for (const configName of configList) {
+            try {
+                const configUrl = `/sandbox-integrations/applications/shopify_test/${configName}`;
+                const storeConfig = await this.getAndDecodeJSON(configUrl);
 
-    var getSandboxData = await github.getFileContent(configList);
+                // assign our keys to a variable
+                const keys = await onepass.grabConfigKeys(onepass,storeConfig.tokens.onepassword_vault_id);
+                // Add keys to storeConfig
+                Object.assign(storeConfig.tokens, keys);
 
-    const base64Content = getSandboxData.content; 
-    const decodedContent = Buffer.from(base64Content, 'base64').toString('utf-8');
-
-    
-    const jsonContent = JSON.parse(decodedContent);
-    console.log(jsonContent);
-
-
-} catch (e) {
-    console.error(`An error occurred: ${e}`);
+                configData.push(storeConfig);
+            } catch (error) {
+                console.error(`Failed to process ${configName}:`, error);
+                throw error;
+            }
+        }
+        return configData;
+    }
 }
-})();
+module.exports = {
+    GithubBase,
+    GithubRepo
+};

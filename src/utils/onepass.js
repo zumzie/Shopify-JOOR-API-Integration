@@ -33,7 +33,7 @@ class OnepassBase {
                 return response.data;
             }
         } catch (error) {
-            console.error('Error sending request:', error);
+            //console.error('Error sending request:', error);
             throw error;
         }
     }
@@ -44,7 +44,7 @@ class OnepassVault extends OnepassBase {
         return this.sendRequest(`/${vault}`);
     }
 
-    async grabGithubToken(vaultId) {
+    async grabGithubToken(onepass,vaultId) {
         try {
             var githubToken = ""
             var onepassList = await onepass.getVaultData(vaultId);
@@ -64,33 +64,54 @@ class OnepassVault extends OnepassBase {
             })
             return githubToken
         } catch (error) {
-            console.error('failed to fetch vault data: ', error)
+            //console.error('failed to fetch vault data: ', error)
+        }
+    }
+
+    async grabConfigKeys(onepass,vaultId) {
+        try {
+            var configTokens  = {}
+
+            //var onepassList = await onepass.getVaultData(vaultId);
+
+            /*
+            onepassList.fields.forEach(vault => {
+                console.log(vault)
+                if(vault.id == 'username') {
+                    joorUsername = vault.id;
+                }
+            })
+            */
+            // Grab github token
+            var githubVault = await onepass.getVaultData(vaultId);
+            githubVault.fields.forEach(item => {
+                if(item.label == 'username') {
+                    configTokens.joorUsername = item.value
+                }
+                if(item.label == 'credential') {
+                    configTokens.joorPassword = item.value
+                }
+                if(item.label.toLowerCase() == 'client_id') {
+                    configTokens.clientId = item.value
+                }
+                if(item.label.toLowerCase() == 'client_secret') {
+                    configTokens.clientSecret = item.value
+                }
+                if(item.label.toLowerCase() == 'v2_token') {
+                    configTokens.apiV2 = item.value
+                }
+                if(item.label.toLowerCase() == 'shopify_token') {
+                    configTokens.shopify_token = item.value
+                }
+            })
+            return configTokens;
+            //return {joorUsername, joorPassword, clientId, clientSecret, apiV2, store_name, shopify_token}
+        } catch (error) {
+           // console.error('failed to fetch vault data: ', error)
         }
     }
 }
 
-
-// Below is for testing
-/*
-const apiToken = process.env.PASS_TOKEN;
-var vaultId = "";
-var githubToken = ""
-
-const onepass = new OnepassVault(apiToken);
-
-
-(async () => {
-    try {
-    var githubToken = await onepass.grabGithubToken(vaultId);
-
-    console.log(githubToken)
-
-} catch (e) {
-    console.error(`An error occurred: ${e}`);
-}
-})();
-
-*/
 module.exports = {
     OnepassBase,
     OnepassVault

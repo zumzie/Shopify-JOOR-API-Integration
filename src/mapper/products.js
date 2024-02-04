@@ -1,6 +1,12 @@
+require('dotenv').config();
+const axios = require('axios');
+const fs = require('fs').promises;
+const { SlackActions } = require('../utils/slack');
+
 class DataMapper {
     constructor(configData) {
         this.configData = configData;
+        var slack = new SlackActions();
     }
 
 }
@@ -43,39 +49,30 @@ class ProductMapper extends DataMapper {
         }
     }
 
-    async mapMetafields(shopifyProducts,prodIds) {
-        // Push metafields into their corresponding product
-        // {'product_id': metafieldobjects} -> {'95458234': [{key: custom.wholesale_usd}, 'value': '96.00'},...]}
-        var metafieldList = []
-        try {
-            for (var i = 0; i < prodIds['product_ids'].length; i++){
-                var productId = prodIds['product_ids'][i];
-                var productMetafield = shopifyProducts.getProductMetafields(productId)
-                var productMetafields = shopifyProducts.processedProductMetafields(productId,productMetafield)
-                console.log(productMetafields)
-                metafieldList.push(productMetafields)
-            }
-            return metafieldList;
-        } catch (parseErr) {
-        console.log("Error parsing JSON:", parseErr);
-        }
-    }
-
-    getProductMetafieldValueByName(product_id, metafield_name) {
-        var metafieldList = this.mapMetafields()
-        var result = "";
-
-        if (metafieldList[product_id] !== undefined) {
-            console.log(metafieldList[product_id])
-            if (metafieldList[product_id].find(meta => meta.key.toLowerCase() === metafield_name.toLowerCase()) !== undefined) {
-                result = metafieldList[product_id].find(meta => meta.key.toLowerCase() === metafield_name.toLowerCase()).value;
-            }
-        }
-
-        return result;
-    }
     
-    async mapProductsToCreate(productsData, configData){
+    async mapProductsToCreate(productsToCreate, configData, metafieldData){
+        const getProductMetafieldValueByName = (product_id, metafield_name) => {
+            // Split the metafield_name if it's in 'namespace.key' format to get the actual key
+            metafield_name = metafield_name.includes('.') ? metafield_name.split('.')[1] : metafield_name;
+        
+            let result = "";
+        
+            // Iterate over the metafieldData array
+            for (const metafieldGroup of metafieldData) {
+                // Check if the current group's product ID matches the one we're looking for
+                if (metafieldGroup[product_id]) {
+                    // Find the metafield with the matching key
+                    const metafield = metafieldGroup[product_id].find(meta => meta.key.toLowerCase() === metafield_name.toLowerCase());
+                    if (metafield) {
+                        // If found, assign the value to result and break the loop
+                        result = metafield.value;
+                        break; // Exit the loop since we found our value
+                    }
+                }
+            }
+        
+            return result;
+        };
         var productStructure = {
             "name": "",
             "external_id": "",
@@ -91,26 +88,26 @@ class ProductMapper extends DataMapper {
         var eval_style_name = styleConfigData.eval_style_name
         var eval_style_description = styleConfigData.eval_style_description
         try {
-            if (productsData && productsData['products'] !== null) {
-                productsData['products'].forEach(cur_product => {
+            if (productsToCreate) {
+                productsToCreate.forEach(cur_product => {
                     // Create a new object for each product based on the structure
                     let mappedProduct = { ...productStructure };
-
+                    var cur_variant = cur_product['variants'][0]; // allows for style number manipulation
                     // Map properties from the product to the new object
                     mappedProduct.name = eval(eval_style_name); // Example mapping
                     mappedProduct.external_id = eval(eval_style_number);
                     mappedProduct.description = eval(eval_style_description);
                     mappedProduct.product_identifier = cur_product.id.toString();
-    
+                    
                     // Add the mapped product to the productList
                     productList.push(mappedProduct);
-                    console.log(getProductMetafieldValueByName(cur_product.id.toString(), 'wholesaleusd'))
+                    //console.log(getProductMetafieldValueByName(cur_product.id.toString(), 'wholesaleusd'))
                 });
             }
         } catch (parseErr) {
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapProductsToCreate: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
-    
         return productList;
     }
 
@@ -139,6 +136,8 @@ class ProductMapper extends DataMapper {
                 })
             }
         } catch (parseErr) {
+            //var slack = new SlackActions();
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapProductsToUpdate: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
     
@@ -158,22 +157,12 @@ class ProductMapper extends DataMapper {
         var fabricOptionValue = configData.options_settings.fabrication;
         var unique_options = configData.options_settings.unique_options;
         var eval_style_upc = configData.flows_settings.styles.eval_upc;
-        
-        var skusToUpdate = [];
-
-        productData.products.forEach(product => {
-            productsToUpdate.forEach(prodToUpdate => {
-                if(product['id'] == prodToUpdate['id']) {
-                    skusToUpdate.push(product)
-                }
-            })
-        })
-    
+            
         try {
             var finalProductList = []; // This will store each product with its SKUs
     
-            for (var i = 0; i < skusToUpdate.length; i++) {
-                var cur_product = skusToUpdate[i];
+            for (var i = 0; i < productsToUpdate.length; i++) {
+                var cur_product = productsToUpdate[i];
                 var { option_settings, option_values } = this.optionMapper(cur_product, colorOptionValue, sizeOptionValue, materialOptionValue, fabricOptionValue);
                 var color = option_settings['Color'];
                 var size = option_settings['Size'];
@@ -215,12 +204,36 @@ class ProductMapper extends DataMapper {
             }
             return finalProductList;
         } catch (parseErr) {
+            //var slack = new SlackActions();
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapSkusToUpdate: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
         return finalProductList;
     }
 
-    async mapSkusToCreate(productResponse, productData, configData) {
+    async mapSkusToCreate(productResponse, productsToCreate, configData) {
+        const getProductMetafieldValueByName = (product_id, metafield_name) => {
+            // Split the metafield_name if it's in 'namespace.key' format to get the actual key
+            metafield_name = metafield_name.includes('.') ? metafield_name.split('.')[1] : metafield_name;
+        
+            let result = "";
+        
+            // Iterate over the metafieldData array
+            for (const metafieldGroup of metafieldData) {
+                // Check if the current group's product ID matches the one we're looking for
+                if (metafieldGroup[product_id]) {
+                    // Find the metafield with the matching key
+                    const metafield = metafieldGroup[product_id].find(meta => meta.key.toLowerCase() === metafield_name.toLowerCase());
+                    if (metafield) {
+                        // If found, assign the value to result and break the loop
+                        result = metafield.value;
+                        break; // Exit the loop since we found our value
+                    }
+                }
+            }
+        
+            return result;
+        };
         var skuStructure = {
             "product_id": "",
             "external_id": "",
@@ -238,9 +251,9 @@ class ProductMapper extends DataMapper {
         try {
             var finalProductList = []; // This will store each product with its SKUs
     
-            if (productResponse['data'] && productData['products']) {
-                for (var i = 0; i < productData['products'].length; i++) {
-                    var cur_product = productData['products'][i];
+            if (productResponse['data'] && productsToCreate) {
+                for (var i = 0; i < productsToCreate.length; i++) {
+                    var cur_product = productsToCreate[i];
                     var { option_settings, option_values } = this.optionMapper(cur_product, colorOptionValue, sizeOptionValue, materialOptionValue, fabricOptionValue);
                     var color = option_settings['Color'];
                     var size = option_settings['Size'];
@@ -295,11 +308,35 @@ class ProductMapper extends DataMapper {
             }
             return finalProductList;
         } catch (parseErr) {
+            //var slack = new SlackActions();
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapSkusToCreate: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
     }
 
-    async mapPrices(productData, skuResponse, configData) {
+    async mapPrices(productData, skuResponse, configData, metafieldData) {
+        const getProductMetafieldValueByName = (product_id, metafield_name) => {
+            // Split the metafield_name if it's in 'namespace.key' format to get the actual key
+            metafield_name = metafield_name.includes('.') ? metafield_name.split('.')[1] : metafield_name;
+        
+            let result = "";
+        
+            // Iterate over the metafieldData array
+            for (const metafieldGroup of metafieldData) {
+                // Check if the current group's product ID matches the one we're looking for
+                if (metafieldGroup[product_id]) {
+                    // Find the metafield with the matching key
+                    const metafield = metafieldGroup[product_id].find(meta => meta.key.toLowerCase() === metafield_name.toLowerCase());
+                    if (metafield) {
+                        // If found, assign the value to result and break the loop
+                        result = metafield.value;
+                        break; // Exit the loop since we found our value
+                    }
+                }
+            }
+        
+            return result;
+        };
         var priceStructure = {
             "sku_id": '',
             "price_type_name": '',
@@ -313,8 +350,8 @@ class ProductMapper extends DataMapper {
     
         try {
             // Loop through Shopify product data
-            for (var i = 0; i < productData['products'].length; i++) {
-                var cur_product = productData['products'][i];
+            for (var i = 0; i < productData.length; i++) {
+                var cur_product = productData[i];
                 var prodId = cur_product['id'].toString();
 
                 // Loop through response data from created Skus
@@ -328,11 +365,12 @@ class ProductMapper extends DataMapper {
                             var priceData = {...priceStructure}; // Clone the structure for each SKU
                             cur_product['variants'].forEach(cur_variant => {
                                 if((sku.sku_identifier === cur_variant['sku']) || (sku.sku_identifier === cur_variant['id'].toString())){
+                                    console.log(eval(eval_unit_price))
                                     priceData.sku_id = sku.id;
                                     priceData.price_type_name = 'USD';
                                     priceData.price_type_currency_code = 'USD';
-                                    priceData.wholesale_value = eval(eval_unit_price);
-                                    priceData.retail_value = eval(eval_unit_retail_price);
+                                    priceData.wholesale_value = eval(eval_unit_price).toString();
+                                    priceData.retail_value = eval(eval_unit_retail_price).toString();
                                     pricesList.push(priceData);
                                 }
                             })
@@ -342,6 +380,8 @@ class ProductMapper extends DataMapper {
             }
             return pricesList;
         } catch (parseErr) {
+            //var slack = new SlackActions();
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapPrices: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
     }
@@ -375,7 +415,7 @@ class ProductMapper extends DataMapper {
 
     
         try {
-            productData.products.forEach(cur_product => {
+            productData.forEach(cur_product => {
                 cur_product['variants'].forEach(cur_variant => {
                     var inventoryData = {...priceStructure};
                     var upc = eval(eval_style_upc)
@@ -386,6 +426,8 @@ class ProductMapper extends DataMapper {
             })
             return inventoryList;
         } catch (parseErr) {
+            //var slack = new SlackActions();
+            await slack.sendMessage(`:shopify: :: \`${configData.store_name}\`@ _apisandbox.jooraccess.com_ => :alphabet-white-exclamation: => Error occuring in function mapInventory: ${parseErr}`);
             console.error("Error parsing JSON:", parseErr);
         }
     }

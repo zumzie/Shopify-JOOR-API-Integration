@@ -3,11 +3,10 @@ const axios = require('axios');
 const fs = require('fs').promises; // For async file operations
 
 class ShopifyBase {
-    constructor(apiToken, apiKey, storeUrl) {
-        this.apiToken = apiToken;
-        this.apiKey = apiKey;
+    constructor(shopifyKey, storeUrl, shopifyVersion) {
+        this.shopifyKey = shopifyKey;
         this.storeUrl = storeUrl;
-        this.baseUrl = `https://${apiToken}:${apiKey}@${storeUrl}/admin/api/2023-04/`;
+        this.baseUrl = `https://${shopifyKey}@${storeUrl}/admin/api/${shopifyVersion}/`;
     }
 
     async sendRequest(endpoint) {
@@ -15,8 +14,8 @@ class ShopifyBase {
             const url = this.baseUrl + endpoint;
             const response = await axios.get(url, {
                 auth: {
-                    username: this.apiToken,
-                    password: this.apiKey
+                    username: this.shopifyKey.split(':')[0], // shopifyToken:ShopifyKey -> shopifyToken
+                    password: this.shopifyKey.split(':')[1] // // shopifyToken:ShopifyKey -> ShopifyKey
                 }
             });
             if (response.status === 200) {

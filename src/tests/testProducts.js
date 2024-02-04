@@ -1,3 +1,5 @@
+// need to figure what are good tests to write. should I include these in logs?
+// fml
 function testProductStrucutre(){
     var productStructure = {
         "name": "",
