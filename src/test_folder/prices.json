@@ -1,0 +1,32 @@
+[
+    {
+      "sku_id": "Mhw1NT3MDK1DE4MJMw0DYy",
+      "price_type_id": "3",
+      "wholesale_value": "17.50",
+      "retail_value": "27.30"
+    },
+    {
+        "sku_id": "Mhw2NT3MDK2DE3MJMw1DYy",
+        "price_type_id": "3",
+        "wholesale_value": "12.45",
+        "retail_value": "23.80"
+    },
+    {
+        "sku_id": "Mhw3NT3MDK3DE3MJMw3DYy",
+        "price_type_id": "3",
+        "wholesale_value": "14.10",
+        "retail_value": "26.50"
+    },
+    {
+        "sku_id": "Mhw4NT3MDK4DE3MJMw4DYy",
+        "price_type_id": "3",
+        "wholesale_value": "16.30",
+        "retail_value": "28.75"
+    },
+    {
+        "sku_id": "Mhw5NT3MDK5DE3MJMw5DYy",
+        "price_type_id": "3",
+        "wholesale_value": "11.60",
+        "retail_value": "22.95"
+    }
+]

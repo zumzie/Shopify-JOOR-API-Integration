@@ -1,0 +1,548 @@
+{
+    "product": [
+        {
+            "id": 1072481060,
+            "title": "Men's Classic T-Shirt",
+            "body_html": "<strong>Comfortable and stylish!</strong>",
+            "vendor": "ComfortWear",
+            "product_type": "T-Shirt",
+            "created_at": "2024-07-02T12:02:43-04:00",
+            "handle": "mens-classic-tshirt",
+            "updated_at": "2024-07-02T12:02:43-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "men, tshirt, casual",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/1072481060",
+            "variants": [
+                {
+                    "id": 1070325040,
+                    "product_id": 1072481060,
+                    "title": "Default Title",
+                    "price": "25.00",
+                    "sku": "MCT-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-02T12:02:43-04:00",
+                    "updated_at": "2024-07-02T12:02:43-04:00",
+                    "taxable": true,
+                    "barcode": "1234567890",
+                    "grams": 200,
+                    "weight": 0.44,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 1070325040,
+                    "inventory_quantity": 100,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "25.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325040",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 1064576510,
+                    "product_id": 1072481060,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 1072481061,
+            "title": "Women's Cozy Hoodie",
+            "body_html": "<strong>Stay warm and stylish!</strong>",
+            "vendor": "ComfortWear",
+            "product_type": "Hoodie",
+            "created_at": "2024-07-02T12:02:43-04:00",
+            "handle": "womens-cozy-hoodie",
+            "updated_at": "2024-07-02T12:02:43-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "women, hoodie, casual",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/1072481061",
+            "variants": [
+                {
+                    "id": 1070325041,
+                    "product_id": 1072481061,
+                    "title": "Default Title",
+                    "price": "50.00",
+                    "sku": "WCH-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-02T12:02:43-04:00",
+                    "updated_at": "2024-07-02T12:02:43-04:00",
+                    "taxable": true,
+                    "barcode": "1234567891",
+                    "grams": 400,
+                    "weight": 0.88,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 1070325041,
+                    "inventory_quantity": 50,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "50.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325041",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 1064576511,
+                    "product_id": 1072481061,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 1072481062,
+            "title": "Kids' Blue Jeans",
+            "body_html": "<strong>Durable and stylish for kids!</strong>",
+            "vendor": "ComfortWear",
+            "product_type": "Jeans",
+            "created_at": "2024-07-02T12:02:43-04:00",
+            "handle": "kids-blue-jeans",
+            "updated_at": "2024-07-02T12:02:43-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "kids, jeans, casual",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/1072481062",
+            "variants": [
+                {
+                    "id": 1070325042,
+                    "product_id": 1072481062,
+                    "title": "Default Title",
+                    "price": "30.00",
+                    "sku": "KBJ-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-02T12:02:43-04:00",
+                    "updated_at": "2024-07-02T12:02:43-04:00",
+                    "taxable": true,
+                    "barcode": "1234567892",
+                    "grams": 300,
+                    "weight": 0.66,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 1070325042,
+                    "inventory_quantity": 75,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "30.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325042",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 1064576512,
+                    "product_id": 1072481062,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 1072481063,
+            "title": "Unisex Baseball Cap",
+            "body_html": "<strong>Perfect for sunny days!</strong>",
+            "vendor": "ComfortWear",
+            "product_type": "Cap",
+            "created_at": "2024-07-02T12:02:43-04:00",
+            "handle": "unisex-baseball-cap",
+            "updated_at": "2024-07-02T12:02:43-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "unisex, cap, casual",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/1072481063",
+            "variants": [
+                {
+                    "id": 1070325043,
+                    "product_id": 1072481063,
+                    "title": "Default Title",
+                    "price": "15.00",
+                    "sku": "UBC-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-02T12:02:43-04:00",
+                    "updated_at": "2024-07-02T12:02:43-04:00",
+                    "taxable": true,
+                    "barcode": "1234567893",
+                    "grams": 100,
+                    "weight": 0.22,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 1070325043,
+                    "inventory_quantity": 200,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "15.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/1070325043",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 1064576513,
+                    "product_id": 1072481063,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 2073482060,
+            "title": "Men's Premium Polo",
+            "body_html": "<strong>Elegant and comfortable!</strong>",
+            "vendor": "EliteWear",
+            "product_type": "Polo",
+            "created_at": "2024-07-03T10:15:00-04:00",
+            "handle": "mens-premium-polo",
+            "updated_at": "2024-07-03T10:15:00-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "men, polo, formal",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/2073482060",
+            "variants": [
+                {
+                    "id": 2070326040,
+                    "product_id": 2073482060,
+                    "title": "Default Title",
+                    "price": "35.00",
+                    "sku": "MPP-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-03T10:15:00-04:00",
+                    "updated_at": "2024-07-03T10:15:00-04:00",
+                    "taxable": true,
+                    "barcode": "2234567890",
+                    "grams": 250,
+                    "weight": 0.55,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 2070326040,
+                    "inventory_quantity": 120,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "35.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/2070326040",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 2065577510,
+                    "product_id": 2073482060,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 2073482061,
+            "title": "Women's Trendy Jacket",
+            "body_html": "<strong>Fashionable and warm!</strong>",
+            "vendor": "EliteWear",
+            "product_type": "Jacket",
+            "created_at": "2024-07-03T10:15:00-04:00",
+            "handle": "womens-trendy-jacket",
+            "updated_at": "2024-07-03T10:15:00-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "women, jacket, trendy",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/2073482061",
+            "variants": [
+                {
+                    "id": 2070326041,
+                    "product_id": 2073482061,
+                    "title": "Default Title",
+                    "price": "60.00",
+                    "sku": "WTJ-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-03T10:15:00-04:00",
+                    "updated_at": "2024-07-03T10:15:00-04:00",
+                    "taxable": true,
+                    "barcode": "2234567891",
+                    "grams": 700,
+                    "weight": 1.55,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 2070326041,
+                    "inventory_quantity": 80,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "60.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/2070326041",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 2065577511,
+                    "product_id": 2073482061,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 2073482062,
+            "title": "Kids' Bright T-Shirt",
+            "body_html": "<strong>Colorful and fun for kids!</strong>",
+            "vendor": "EliteWear",
+            "product_type": "T-Shirt",
+            "created_at": "2024-07-03T10:15:00-04:00",
+            "handle": "kids-bright-tshirt",
+            "updated_at": "2024-07-03T10:15:00-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "kids, tshirt, bright",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/2073482062",
+            "variants": [
+                {
+                    "id": 2070326042,
+                    "product_id": 2073482062,
+                    "title": "Default Title",
+                    "price": "20.00",
+                    "sku": "KBT-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-03T10:15:00-04:00",
+                    "updated_at": "2024-07-03T10:15:00-04:00",
+                    "taxable": true,
+                    "barcode": "2234567892",
+                    "grams": 150,
+                    "weight": 0.33,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 2070326042,
+                    "inventory_quantity": 90,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "20.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/2070326042",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 2065577512,
+                    "product_id": 2073482062,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        },
+        {
+            "id": 2073482063,
+            "title": "Unisex Sports Cap",
+            "body_html": "<strong>Perfect for outdoor activities!</strong>",
+            "vendor": "EliteWear",
+            "product_type": "Cap",
+            "created_at": "2024-07-03T10:15:00-04:00",
+            "handle": "unisex-sports-cap",
+            "updated_at": "2024-07-03T10:15:00-04:00",
+            "published_at": null,
+            "template_suffix": null,
+            "published_scope": "web",
+            "tags": "unisex, cap, sports",
+            "status": "draft",
+            "admin_graphql_api_id": "gid://shopify/Product/2073482063",
+            "variants": [
+                {
+                    "id": 2070326043,
+                    "product_id": 2073482063,
+                    "title": "Default Title",
+                    "price": "18.00",
+                    "sku": "USC-001",
+                    "position": 1,
+                    "inventory_policy": "deny",
+                    "compare_at_price": null,
+                    "fulfillment_service": "manual",
+                    "inventory_management": null,
+                    "option1": "Default Title",
+                    "option2": null,
+                    "option3": null,
+                    "created_at": "2024-07-03T10:15:00-04:00",
+                    "updated_at": "2024-07-03T10:15:00-04:00",
+                    "taxable": true,
+                    "barcode": "2234567893",
+                    "grams": 120,
+                    "weight": 0.26,
+                    "weight_unit": "lb",
+                    "inventory_item_id": 2070326043,
+                    "inventory_quantity": 110,
+                    "old_inventory_quantity": 0,
+                    "presentment_prices": [
+                        {
+                            "price": {
+                                "amount": "18.00",
+                                "currency_code": "USD"
+                            },
+                            "compare_at_price": null
+                        }
+                    ],
+                    "requires_shipping": true,
+                    "admin_graphql_api_id": "gid://shopify/ProductVariant/2070326043",
+                    "image_id": null
+                }
+            ],
+            "options": [
+                {
+                    "id": 2065577513,
+                    "product_id": 2073482063,
+                    "name": "Title",
+                    "position": 1,
+                    "values": [
+                        "Default Title"
+                    ]
+                }
+            ],
+            "images": [],
+            "image": null
+        }
+    ]
+}

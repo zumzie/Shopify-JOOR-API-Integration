@@ -1,0 +1,177 @@
+[
+    {
+        "id": "Mhw1NT3MDK1DE4MJMw0DYy",
+        "product_id": "3295521",
+        "external_id": "nyhat0001",
+        "sku_identifier": "nyhatblue001s1",
+        "trait_values": [
+            {
+                "trait": {
+                    "id": "Color",
+                    "name": "Blue"
+                },
+                "value": "Blue",
+                "external_id": "blue001",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE",
+                "trait": {
+                    "id": "Size",
+                    "name": "XS"
+                },
+                "value": "XS",
+                "external_id": "xs001",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE"
+                
+            }
+        ],
+        "identifier": [
+            {
+                "type": "upc",
+                "value": "03338300740"
+            }
+        ]
+    },
+    {
+        "id": "Mhw2NT3MDK2DE3MJMw1DYy",
+        "product_id": "3295522",
+        "external_id": "lahat0002",
+        "sku_identifier": "red002s2",
+        "trait_values": [
+            {
+                "trait": {
+                    "id": "Color",
+                    "name": "Red"
+                },
+                "value": "Red",
+                "external_id": "red002",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE",
+                "trait": {
+                    "id": "Size",
+                    "name": "XS"
+                },
+                "value": "XS",
+                "external_id": "MD002",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE"
+                
+            }
+        ],
+        "identifier": [
+            {
+                "type": "upc",
+                "value": "03338300742"
+            }
+        ]
+    },
+    {
+        "id": "Mhw3NT3MDK3DE3MJMw3DYy",
+        "product_id": "3295533",
+        "external_id": "sfhat0003",
+        "sku_identifier": "green03s3",
+        "trait_values": [
+            {
+                "trait": {
+                    "id": "Color",
+                    "name": "Green"
+                },
+                "value": "Green",
+                "external_id": "green003",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE",
+                "trait": {
+                    "id": "Size",
+                    "name": "XS"
+                },
+                "value": "XS",
+                "external_id": "XS003",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE"
+                
+            }
+        ],
+        "identifier": [
+            {
+                "type": "upc",
+                "value": "03338300743"
+            }
+        ]
+    },
+    {
+        "id": "Mhw4NT3MDK4DE3MJMw4DYy",
+        "product_id": "3295533",
+        "external_id": "boshat0004",
+        "sku_identifier": "blk04s4",
+        "trait_values": [
+            {
+                "trait": {
+                    "id": "Color",
+                    "name": "Black"
+                },
+                "value": "Black",
+                "external_id": "blk004",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE",
+                "trait": {
+                    "id": "Size",
+                    "name": "XS"
+                },
+                "value": "XS",
+                "external_id": "XS004",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE"
+                
+            }
+        ],
+        "identifier": [
+            {
+                "type": "upc",
+                "value": "03338300743"
+            }
+        ]
+    },
+    {
+        "id": "Mhw5NT3MDK5DE3MJMw5DYy",
+        "product_id": "3295533",
+        "external_id": "chihat0005",
+        "sku_identifier": "Yellow05s5",
+        "trait_values": [
+            {
+                "trait": {
+                    "id": "Color",
+                    "name": "Yellow"
+                },
+                "value": "Yellow",
+                "external_id": "Yellow005",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE",
+                "trait": {
+                    "id": "Size",
+                    "name": "SM"
+                },
+                "value": "SM",
+                "external_id": "SM005",
+                "order_minimum": 0,
+                "order_nbr": 1,
+                "status": "ACTIVE"
+                
+            }
+        ],
+        "identifier": [
+            {
+                "type": "upc",
+                "value": "03338300743"
+            }
+        ]
+    }
+]

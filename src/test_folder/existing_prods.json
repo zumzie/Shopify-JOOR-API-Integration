@@ -1,0 +1,132 @@
+[
+    {
+        "name": "Men's Classic T-Shirt",
+        "description": "Comfortable and stylish!",
+        "order_minimum": 0,
+        "external_id": "1072481060",
+        "product_identifier": "1072481060",
+        "id": "3295521",
+        "product_trait_values": [
+            {
+                "trait_id": "UHJvZHVjdFRyYWl0Ok1BVA==",
+                "value": "COTONE 96%-ELASTAM/SPANDEX 4%",
+                "external_id": "012"
+            }
+        ],
+        "category_ids": [
+            "490"
+        ],
+        "tags": [
+            {
+                "name": "Fit",
+                "value": "Wide",
+                "code": "F2",
+                "parent_id": "116554"
+            }
+        ]
+    },
+    {
+        "name": "Women's Cozy Hoodie",
+        "description": "Stay warm and stylish!",
+        "order_minimum": 1,
+        "external_id": "1072481061",
+        "product_identifier": "1072481061",
+        "id": "32943534",
+        "product_trait_values": [
+            {
+                "trait_id": "UHJvZHVjdFRyYWl0OkxBVQ==",
+                "value": "POLYESTER 100%",
+                "external_id": "013"
+            }
+        ],
+        "category_ids": [
+            "491"
+        ],
+        "tags": [
+            {
+                "name": "Fit",
+                "value": "Slim",
+                "code": "F3",
+                "parent_id": "116555"
+            }
+        ]
+    },
+    {
+        "name": "Kids' Blue Jeans",
+        "description": "Durable and stylish for kids!",
+        "order_minimum": 2,
+        "external_id": "1072481062",
+        "product_identifier": "1072481062",
+        "id": "32932459",
+        "product_trait_values": [
+            {
+                "trait_id": "UHJvZHVjdFRyYWl0OlNGVQ==",
+                "value": "COTTON 100%",
+                "external_id": "014"
+            }
+        ],
+        "category_ids": [
+            "492"
+        ],
+        "tags": [
+            {
+                "name": "Fit",
+                "value": "Regular",
+                "code": "F4",
+                "parent_id": "116556"
+            }
+        ]
+    },
+    {
+        "name": "Unisex Baseball Cap",
+        "description": "Perfect for sunny days!",
+        "order_minimum": 3,
+        "external_id": "1072481063",
+        "product_identifier": "1072481063",
+        "id": "3221304",
+        "product_trait_values": [
+            {
+                "trait_id": "UHJvZHVjdFRyYWl0OkJPUw==",
+                "value": "WOOL 100%",
+                "external_id": "015"
+            }
+        ],
+        "category_ids": [
+            "493"
+        ],
+        "tags": [
+            {
+                "name": "Fit",
+                "value": "Loose",
+                "code": "F5",
+                "parent_id": "116557"
+            }
+        ]
+    },
+    {
+        "name": "Men's Premium Polo",
+        "description": "Elegant and comfortable!",
+        "order_minimum": 4,
+        "external_id": "2073482060",
+        "product_identifier": "2073482060",
+        "id": "3291234",
+        "product_trait_values": [
+            {
+                "trait_id": "UHJvZHVjdFRyYWl0OkNISS==",
+                "value": "ACRYLIC 50%-WOOL 50%",
+                "external_id": "016"
+            }
+        ],
+        "category_ids": [
+            "494"
+        ],
+        "tags": [
+            {
+                "name": "Fit",
+                "value": "Athletic",
+                "code": "F6",
+                "parent_id": "116558"
+            }
+        ]
+    }
+]
