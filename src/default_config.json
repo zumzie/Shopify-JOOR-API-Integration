@@ -46,7 +46,7 @@
         "active": true,
         "frequency": 60,
         "scope_from_date": {
-          "year": 0,
+          "year": 1,
           "month": 0,
           "day": 0,
           "hour": 0,
